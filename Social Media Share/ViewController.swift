@@ -7,19 +7,24 @@
 //
 
 import UIKit
+import TwitterKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func twitterLogin(_ sender: Any) {
+        Twitter.sharedInstance().logIn(completion: { (session, error) in
+            if (session != nil) {
+                print("signed in as \(session?.userName)");
+            } else {
+                print("error: \(error?.localizedDescription)");
+            }
+        })
     }
-
-
 }
+
 
